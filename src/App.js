@@ -6,6 +6,7 @@ import Header from './Header';
 import Login from './Login';
 import { auth } from "./firebase";
 import {onAuthStateChanged} from 'firebase/auth'
+import Checkout from './Checkout';
 
 function App() {
   useEffect(() => {
@@ -35,6 +36,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/login" element={<Login/>}/>
+          <Route path="/checkout" element={<Checkout/>}/>
         </Routes>
       </Router>
     </div>
