@@ -7,25 +7,28 @@ import Login from './Login';
 import { auth } from "./firebase";
 import {onAuthStateChanged} from 'firebase/auth'
 import Checkout from './Checkout';
+import { useStateValue } from './StateProvider';
 
 function App() {
+  const [{ basket }, dispatch] = useStateValue();
+
   useEffect(() => {
-    // will only run once when the app component loads...
 
     auth.onAuthStateChanged((authUser) => {
-
+      console.log(authUser)
       if (authUser) {
         // the user just logged in / the user was logged in
-        // dispatch({
-        //   type: "SET_USER",
-        //   user: authUser,
-        // });
+        
+        dispatch({
+          type: "SET_USER",
+          user: authUser,
+        });
       } else {
         // the user is logged out
-        // dispatch({
-        //   type: "SET_USER",
-        //   user: null,
-        // });
+        dispatch({
+          type: "SET_USER",
+          user: null,
+        });
       }
     });
   }, []);
